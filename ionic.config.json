@@ -1,0 +1,7 @@
+{
+  "name": "Project_api",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
