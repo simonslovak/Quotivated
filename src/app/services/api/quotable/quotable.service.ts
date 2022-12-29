@@ -16,9 +16,15 @@ export class QuotableService {
     return this.http.get<any>(url);
   }
 
-  getColor(): Observable<any> {
+  getRandomColour(): Observable<any> {
     const url = `${environment.xColors.baseUrl}/api/random`; 
     console.log(url);
     return this.http.get<any>(url);
+  }
+
+  getAuthorInfo(): Observable<any> {
+    const url = `${environment.wikipedia.baseUrl}/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=Thomas Haynes Bayly`;
+    console.log(url);
+    return this.http.get<any>(url)
   }
 }

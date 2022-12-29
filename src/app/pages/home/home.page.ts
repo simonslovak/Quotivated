@@ -13,8 +13,12 @@ export class HomePage implements OnInit {
     this.quotableService.getRandomQuote().subscribe((res) => {
       console.log(res);
     })
-    
-    this.quotableService.getColor().subscribe((res) => {
+
+    this.quotableService.getRandomColour().subscribe((res) => {
+      console.log(res);
+    })
+
+    this.quotableService.getAuthorInfo().subscribe((res) => {
       console.log(res);
     })
   }

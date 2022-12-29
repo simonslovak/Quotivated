@@ -9,6 +9,9 @@ export const environment = {
   },
   xColors: {
     baseUrl: 'https://x-colors.yurace.pro'
+  },
+  wikipedia: {
+    baseUrl: 'http://en.wikipedia.org'
   }
 };
 
