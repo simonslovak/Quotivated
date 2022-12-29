@@ -3,8 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  baseURL: "api.quotable.io"
+  production: false, 
+  quotable: {     
+    baseUrl: 'https://api.quotable.io'
+  },
+  xColors: {
+    baseUrl: 'https://x-colors.yurace.pro'
+  }
 };
 
 /*
