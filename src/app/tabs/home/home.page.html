@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="cog-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="card">   
+  <ion-card class="content" *ngIf="results">
+    <div>
+      
+    </div>    
+    <p class="main-text">
+      {{results.content}}    
+    </p>    
+    <p class="signature">
+      {{results.author}}
+    </p>
+  </ion-card>
+
+  <ion-button class="button-generate" (click)="loadQuote()" expand="block">
+    Generate quote
+  </ion-button>   
+</ion-content>
