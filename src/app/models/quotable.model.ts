@@ -8,3 +8,12 @@ export interface ApiResult {
     dateAdded: string;
     dateModified: string;
 }
+
+export interface ApiResults {
+    count: number;
+    totalCount: number;
+    page: number;
+    totalPages: number;
+    lastItemIndex: number;
+    results: ApiResult[];
+}

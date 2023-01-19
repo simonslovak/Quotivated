@@ -13,17 +13,18 @@
 
 <ion-content class="card">   
   <ion-card class="content" *ngIf="results">
-    <div>
-      
-    </div>    
+    <div class="image-star-block">
+      <img src="../../../assets/img/avatar.jpg" class="pic"/>
+      <ion-icon class="heart" (click)="addToFavorites()" name="heart-outline"></ion-icon>
+    </div>
     <p class="main-text">
-      {{results.content}}    
+      {{results.content}}       
     </p>    
+         
     <p class="signature">
       {{results.author}}
     </p>
   </ion-card>
-
   <ion-button class="button-generate" (click)="loadQuote()" expand="block">
     Generate quote
   </ion-button>   

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { QuotableService } from 'src/app/services/api/quotable/quotable.service';
-import { WikipediaService } from 'src/app/services/api/wikipedia/wikipedia.service';
-import { XcolorsService } from 'src/app/services/api/xcolors/xcolors.service';
 import { ApiResult } from 'src/app/models/quotable.model';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -12,14 +11,15 @@ import { ApiResult } from 'src/app/models/quotable.model';
 })
 export class HomePage implements OnInit {
    
-  results?: ApiResult;
+  results?: ApiResult;  
+  resultsList: ApiResult[] = [];
+  wikiresult: any;
   currentPage = 1;
 
   constructor(
-    private quotableService: QuotableService,
-    private wikipedia: WikipediaService,
-    private xcolorsService: XcolorsService,
-    private loadingCtrl: LoadingController    
+    private quotableService: QuotableService,       
+    private loadingCtrl: LoadingController,
+    private storageService: StorageService        
     ) {}
   
   ngOnInit() {
@@ -29,8 +29,7 @@ export class HomePage implements OnInit {
    });
 }
 
-  async loadQuote() {
-    
+  async loadQuote() {    
     const loading = await this.loadingCtrl.create({
       message: 'Loading..',
       spinner: 'bubbles'
@@ -39,16 +38,23 @@ export class HomePage implements OnInit {
 
     this.quotableService.getRandomQuote(this.currentPage).subscribe((res) => {
       loading.dismiss();
-      this.results = res;            
-      console.log(this.results)      
+      this.results = res;    
   });
+  }
 
-    // this.wikipedia.getAuthorInfo().subscribe((res) => {
-    //   console.log(res);
-    // })
-
-    // this.xcolorsService.getRandomColour().subscribe((res) => {
-    //   console.log(res);
-    // })
+  async addToFavorites() {
+    this.resultsList = await this.storageService.loadData();
+    if(this.resultsList == null){
+      this.resultsList = [];
+    }
+    if(this.results !== undefined) {      
+      let existingItem = this.resultsList.find(i => i._id === this.results?._id);
+      if(!existingItem) {
+        this.resultsList.push(this.results);
+        this.storageService.saveData(this.resultsList);
+      }
+    } else {
+      this.resultsList = [];
+    }
   }
 };

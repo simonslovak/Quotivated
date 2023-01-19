@@ -1,0 +1,52 @@
+ion-radio {
+    --border-radius: 4px;
+    --inner-border-radius: 4px;    
+
+    --color: #ddd;
+    --color-checked: rgba(5, 112, 211, 0.938);
+}
+  
+ion-radio.ios {
+    width: 20px;
+    height: 20px;
+  
+    border: 2px solid #ddd;
+    border-radius: 4px;
+}
+  
+.radio-checked.ios {
+    border-color: rgba(5, 112, 211, 0.938);
+}
+
+ion-searchbar {
+    margin-top: 2.5vh;
+}
+
+ion-card {
+    margin: 2.5vh 10px;    
+}
+
+on-radio-group {
+    height: 70%;
+}
+
+.tag-card {
+    height: 30%;
+}
+
+.content-length-card {
+    height: 45%;
+}
+
+.content-length {
+    text-align: center;
+}
+
+.tags {
+    display: inline-block;    
+}
+
+.authors {
+    display: inline-block;    
+}
+
