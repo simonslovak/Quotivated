@@ -15,7 +15,7 @@
   <ion-card class="content" *ngFor="let item of quotesList">
     <div class="image-star-block">
       <img src="../../../assets/img/avatar.jpg" class="pic"/>
-      <ion-icon class="heart" name="heart"></ion-icon>
+      <ion-icon class="heart" (click)="removeFromFavorites(item)" name="heart"></ion-icon>
     </div>
     <p class="main-text">
       {{item.content}}       

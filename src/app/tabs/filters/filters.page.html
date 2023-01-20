@@ -12,18 +12,18 @@
 </ion-header>
 
 <ion-content>  
-  <ion-searchbar></ion-searchbar>
-  <ion-card class="tag-card">
+  <ion-searchbar [(ngModel)]="inputValue" (ionChange)="onChangeHandlerExpression($event)"></ion-searchbar>
+  <ion-card class="fields-card">
     <p class="content-length">Search option:</p>
     <ion-list>
-      <ion-radio-group [allowEmptySelection]="false" value="authors">
+      <ion-radio-group [allowEmptySelection]="false" value="author" (ionChange)="onChangeHandlerFields($event)">
         <ion-item>
-          <ion-label>Authors</ion-label>
-          <ion-radio slot="end" value="authors"></ion-radio>
+          <ion-label>Author</ion-label>
+          <ion-radio slot="end" value="author"></ion-radio>
         </ion-item>
     
         <ion-item>
-          <ion-label>Tags</ion-label>
+          <ion-label>Tag</ion-label>
           <ion-radio slot="end" value="tags"></ion-radio>
         </ion-item>
 </ion-radio-group>
@@ -32,25 +32,30 @@
   <ion-card class="content-length-card">
     <p class="content-length">Content length:</p>
     <ion-list>
-      <ion-radio-group [allowEmptySelection]="false" value="category1">
+      <ion-radio-group [allowEmptySelection]="false" value="category1" (ionChange)="onChangeHandlerMinMax($event)">
         <ion-item>
-          <ion-label>0 - 49</ion-label>
+          <ion-label>All</ion-label>
           <ion-radio slot="end" value="category1"></ion-radio>
         </ion-item>
-    
+
         <ion-item>
-          <ion-label>50 - 99</ion-label>
+          <ion-label>0 - 49</ion-label>
           <ion-radio slot="end" value="category2"></ion-radio>
         </ion-item>
     
         <ion-item>
-          <ion-label>100 - 149</ion-label>
+          <ion-label>50 - 99</ion-label>
           <ion-radio slot="end" value="category3"></ion-radio>
         </ion-item>
     
         <ion-item>
-          <ion-label>150 +</ion-label>
+          <ion-label>100 - 149</ion-label>
           <ion-radio slot="end" value="category4"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>150 +</ion-label>
+          <ion-radio slot="end" value="category5"></ion-radio>
         </ion-item>
         
       </ion-radio-group>

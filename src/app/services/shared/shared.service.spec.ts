@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WikipediaService } from './wikipedia.service';
+import { SharedService } from './shared.service';
 
-describe('WikipediaService', () => {
-  let service: WikipediaService;
+describe('SharedService', () => {
+  let service: SharedService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WikipediaService);
+    service = TestBed.inject(SharedService);
   });
 
   it('should be created', () => {

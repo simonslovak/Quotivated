@@ -11,8 +11,8 @@ export class StorageService {
     private storage: Storage    
   ) {}
 
-  saveData(data: any) {
-    this.storage.set('myData', JSON.stringify(data));
+   async saveData(data: any) {
+    await this.storage.set('myData', JSON.stringify(data));
   }
 
   async loadData(): Promise<any> {    
@@ -20,5 +20,4 @@ export class StorageService {
     //await this.storage.clear();
     return JSON.parse(data);
   }
-
 }

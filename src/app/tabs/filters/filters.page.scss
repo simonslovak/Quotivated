@@ -19,23 +19,17 @@ ion-radio.ios {
 }
 
 ion-searchbar {
-    margin-top: 2.5vh;
+    margin-top: 1vh;
+    padding-bottom: 0;
 }
 
-ion-card {
-    margin: 2.5vh 10px;    
+ion-card {    
+    margin: 2.5vh 10px;
+    padding-bottom: 3.5vh;    
 }
 
 on-radio-group {
     height: 70%;
-}
-
-.tag-card {
-    height: 30%;
-}
-
-.content-length-card {
-    height: 45%;
 }
 
 .content-length {

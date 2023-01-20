@@ -1,62 +1,61 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
-import { QuotableService } from 'src/app/services/api/quotable/quotable.service';
 import { ApiResult } from 'src/app/models/quotable.model';
-import { ModalController } from '@ionic/angular';
-import { ViewChild } from '@angular/core';
-import { IonRange } from '@ionic/angular';
+import { SharedService } from 'src/app/services/shared/shared.service';
 
 @Component({
   selector: 'app-filters',
+  template: `<p>{{ minValue }} {{maxValue}}</p>`,
   templateUrl: './filters.page.html',
   styleUrls: ['./filters.page.scss'],
+  
 })
+
 export class FiltersPage implements OnInit {
   
+  inputValue: string = "";
   quotes: ApiResult[] = [];   
-  currentPage = 1;  
-
-
-  step = 5;
-  rangeValues = [25, 75];
-  updateValues(event: any) {
-    if(!isNaN(event.value[0])) this.rangeValues[0] =  Math.round(event.value[0]/this.step)*this.step;
-    if(!isNaN(event.value[1])) this.rangeValues[1] =  Math.round(event.value[1]/this.step)*this.step;
-  } 
+  currentPage = 1;     
   
   constructor(
-    private quotableService: QuotableService,
-    private loadingCtrl: LoadingController,
-    private modalFilters: ModalController    
-    ) {}
+    private sharedService: SharedService
+  ) { }
 
     ngOnInit() {
+    }  
+    onChangeHandlerExpression(event: any) {
+      console.log(event.detail.value);
+      this.sharedService.setExpression(event.detail.value);
+    }
+    
+    onChangeHandlerFields(event: any) {
+      console.log(event.detail.value);
+      if(event.detail.value == "author") {
+        this.sharedService.setFields("author");                
+      }
+      else {
+        this.sharedService.setFields("tags");
+      }
     }
 
-  async loadQuote() {
+    onChangeHandlerMinMax(event: any) {
+      console.log(event.detail.value);
+      if(event.detail.value == "category1") {
+        this.sharedService.setMinValue(0)
+        this.sharedService.setMaxValue(1000);
+      }
+      else if(event.detail.value == "category2") {
+        this.sharedService.setMinValue(0);
+        this.sharedService.setMaxValue(49); 
+      } else if (event.detail.value == "category3") {
+        this.sharedService.setMinValue(50);
+        this.sharedService.setMaxValue(99); 
+      } else if (event.detail.value == "category4") {
+        this.sharedService.setMinValue(100);
+        this.sharedService.setMaxValue(149);
+      } else {
+        this.sharedService.setMinValue(150);
+        this.sharedService.setMaxValue(1000);        
+      } 
+    }
     
-    const loading = await this.loadingCtrl.create({
-      message: 'Loading..',
-      spinner: 'bubbles'
-    });
-    await loading.present();
-
-    this.quotableService.getSpecificQuotes(this.currentPage, "war", "tags").subscribe((res) => {
-      loading.dismiss();
-      this.quotes = [...res.results];              
-      console.log(this.quotes)          
-  });
-
-  }
-  clickModal() {
-    this.openModal();
-  }
-
-  async openModal() {
-    const modal = await this.modalFilters.create({
-      component: FiltersPage,
-    });
-
-    await modal.present();
-  }
 }
