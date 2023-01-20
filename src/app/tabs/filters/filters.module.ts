@@ -12,7 +12,7 @@ import { FiltersPage } from './filters.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FiltersPageRoutingModule
+    FiltersPageRoutingModule    
   ],
   declarations: [FiltersPage]
 })
